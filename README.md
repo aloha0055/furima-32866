@@ -5,16 +5,14 @@
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| email              | string              | null: false             |
-| password           | string              | null: false             |
+| email              | string              | uniqueness: true             |
+| encrypted_password | string              | null: false             |
 | nickname           | string              | null: false             |
-| first_name         | text                | null: false             |
-| last_name          | text                | null: false             |
-| first_name_kana    | text                | null: false             |
-| last_name_kana     | text                | null: false             |
-| birth_year         | integer             | null: false             |
-| birth_month        | integer             | null: false             |
-| birth_day          | integer             | null: false             |
+| first_name         | string              | null: false             |
+| last_name          | string              | null: false             |
+| first_name_kana    | string              | null: false             |
+| last_name_kana     | string              | null: false             |
+| birthday           | date                | null: false             |
 
 ### Association
 
@@ -29,12 +27,12 @@
 |-------------------------------------|------------|-------------------|
 | name                                | string     | null: false       |
 | price                               | integer    | null: false       |
-| category                            | text       | null: false       |
-| condition                           | text       | null: false       |
-| text                                | text       | null: false       |
-| shipping_charges                    | text       | null: false       |
-| shipping_area                       | text       | null: false       |
-| estimated_shipping_date             | text       | null: false       |
+| category_id                         | integer    | null: false       |
+| condition_id                        | integer    | null: false       |
+| text                                | integer    | null: false       |
+| shipping_charges_id                 | integer    | null: false       |
+| shipping_area_id                    | integer    | null: false       |
+| estimated_shipping_date_id          | integer    | null: false       |
 | user                                | references | foreign_key: true |
 
 ### Association
@@ -47,10 +45,6 @@
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| credit_number                       | integer    | null: false       |
-| expiration_date_month               | integer    | null: false       |
-| expiration_date_year                | integer    | null: false       |
-| security_code                       | integer    | null: false       |
 | user                                | references | foreign_key: true |
 | items                               | references | foreign_key: true |
 
@@ -66,12 +60,12 @@
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | post_code                           | integer    | null: false       |
-| prefectures                         | string     | null: false       |
+| prefecture_id                       | integer    | null: false       |
 | municipal_name                      | string     | null: false       |
 | address                             | string     | null: false       |
 | address                             | string     | null: false       |
-| building_name                       | string     | null: false       |
-| phone-number                        | integer    | null: false       |
+| building_name                       | string     |                   |
+| phone_number                        | integer    | null: false       |
 
 
 ### Association
