@@ -5,7 +5,7 @@
 
 | Column             | Type                | Options                 |
 |--------------------|---------------------|-------------------------|
-| email              | string              | uniqueness: true             |
+| email              | string              | uniqueness: true, null: false |
 | encrypted_password | string              | null: false             |
 | nickname           | string              | null: false             |
 | first_name         | string              | null: false             |
@@ -29,8 +29,8 @@
 | price                               | integer    | null: false       |
 | category_id                         | integer    | null: false       |
 | condition_id                        | integer    | null: false       |
-| text                                | integer    | null: false       |
-| shipping_charges_id                 | integer    | null: false       |
+| text                                | text       | null: false       |
+| shipping_charge_id                  | integer    | null: false       |
 | shipping_area_id                    | integer    | null: false       |
 | estimated_shipping_date_id          | integer    | null: false       |
 | user                                | references | foreign_key: true |
@@ -46,7 +46,7 @@
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
 | user                                | references | foreign_key: true |
-| items                               | references | foreign_key: true |
+| item                                | references | foreign_key: true |
 
 ### Association
 
@@ -59,14 +59,13 @@
 
 | Column                              | Type       | Options           |
 |-------------------------------------|------------|-------------------|
-| post_code                           | integer    | null: false       |
+| post_code                           | string     | null: false       |
 | prefecture_id                       | integer    | null: false       |
 | municipal_name                      | string     | null: false       |
 | address                             | string     | null: false       |
-| address                             | string     | null: false       |
 | building_name                       | string     |                   |
-| phone_number                        | integer    | null: false       |
-
+| phone_number                        | string     | null: false       |
+| order                               | references | foreign_key: true |
 
 ### Association
 
@@ -79,7 +78,7 @@
 | Column      | Type       | Options           |
 |-------------|------------|-------------------|
 | text        | text       | null: false       |
-| items       | references | foreign_key: true |
+| item        | references | foreign_key: true |
 | user        | references | foreign_key: true |
 
 ### Association
