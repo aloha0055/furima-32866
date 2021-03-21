@@ -20,6 +20,8 @@
 
 * has_many :items
 * has_many :comments
+* has_many :orders
+
 
 ## items table
 
@@ -32,13 +34,51 @@
 | text                                | text       | null: false       |
 | shipping_charges                    | text       | null: false       |
 | shipping_area                       | text       | null: false       |
-| Estimated_shipping_date             | text       | null: false       |
+| estimated_shipping_date             | text       | null: false       |
 | user                                | references | foreign_key: true |
 
 ### Association
 
 - belongs_to :user
 - has_many :comments
+- has_one  :order
+
+## orders table
+
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| credit_number                       | integer    | null: false       |
+| expiration_date_month               | integer    | null: false       |
+| expiration_date_year                | integer    | null: false       |
+| security_code                       | integer    | null: false       |
+| user                                | references | foreign_key: true |
+| items                               | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
+- has_one :shipping_address
+
+
+## shipping_address table
+
+| Column                              | Type       | Options           |
+|-------------------------------------|------------|-------------------|
+| post_code                           | integer    | null: false       |
+| prefectures                         | string     | null: false       |
+| municipal_name                      | string     | null: false       |
+| address                             | string     | null: false       |
+| address                             | string     | null: false       |
+| building_name                       | string     | null: false       |
+| phone-number                        | integer    | null: false       |
+
+
+### Association
+
+- belongs_to :order
+
+
 
 ## comments table
 
@@ -53,28 +93,3 @@
 - belongs_to :item
 - belongs_to :user
 
-
-
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
