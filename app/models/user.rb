@@ -11,6 +11,8 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :birthday, presence: true
 
+  validate :mail, uniqueness: true
+
 
   has_many :items
   has_many :comments
