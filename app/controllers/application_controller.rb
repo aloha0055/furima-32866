@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-#  以下、BASIC認証コード。他の機能を実装後にコメントアウト解除予定。WEB環境での実装確認済み。
+  #  以下、BASIC認証コード。他の機能を実装後にコメントアウト解除予定。WEB環境での実装確認済み。
   # before_action :basic_auth
 
   # private
@@ -11,11 +11,14 @@ class ApplicationController < ActionController::Base
   # end
 
   # 以上、BASIC認証コード。
-
+  
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
+
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: [:nickname, :first_name, :last_name, :first_name_kana, :last_name_kana, :birthday])
   end
 end
