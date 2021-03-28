@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      item: 商品
+      user: 出品者
+    attributes:
+      item:
+        name: 商品名
+        price: 値段
+        category_id: 商品の種類
+        condition_id: 商品の状態
+        text: 説明文
+        shipping_charge_id: 送料
+        shipping_area_id: 発送地域
+        estimated_shipping_date_id: 発送までの日数
+      user:
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+        first_name: 名前
+        last_name: 名字
+        first_name_kana: 名前（カナ）
+        last_name_kana: 名字（カナ）
+        birthday: 生年月日
