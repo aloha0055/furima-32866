@@ -15,9 +15,9 @@ RSpec.describe Item, type: :model do
 
     context '出品できないとき' do
       it '画像が空では登録できない' do
-        # @user.nickname = ''
-        # @user.valid?
-        # expect(@user.errors.full_messages).to include "Nickname can't be blank"
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "写真を入力してください"
       end
       it '商品名が空では登録できない' do
         @item.name = ''
@@ -34,25 +34,50 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include "商品の種類を入力してください"
       end
+      it 'カテゴリーが１では登録できない' do
+        @item.category_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "商品の種類は1以外の値にしてください"
+      end
       it '商品の状態が空では登録できない' do
         @item.condition_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "商品の状態を入力してください"
+      end
+      it '商品の状態が1では登録できない' do
+        @item.condition_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "商品の状態は1以外の値にしてください"
       end
       it '配送料の負担が空では登録できない' do
         @item.shipping_charge_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "送料を入力してください"
       end
+      it '配送料の負担が1では登録できない' do
+        @item.shipping_charge_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "送料は1以外の値にしてください"
+      end
       it '発送元の地域が空では登録できない' do
         @item.shipping_area_id = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "発送地域を入力してください"
       end
+      it '発送元の地域が1では登録できない' do
+        @item.shipping_area_id = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "発送地域は1以外の値にしてください"
+      end
       it '発送までの日数が空では登録できない' do
         @item.estimated_shipping_date_id  = ''
         @item.valid?
         expect(@item.errors.full_messages).to include "発送までの日数を入力してください"
+      end
+      it '発送までの日数が1では登録できない' do
+        @item.estimated_shipping_date_id  = '1'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "発送までの日数は1以外の値にしてください"
       end
       it '価格が空では登録できない' do
         @item.price = ''

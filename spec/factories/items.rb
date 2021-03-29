@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    # image                      { Faker::Name.initials(number: 2) }
     name                      {"写真"}
     text                       { Faker::Lorem.sentence}
     price                      {1111}

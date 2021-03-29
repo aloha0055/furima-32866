@@ -13,6 +13,7 @@ ja:
         shipping_charge_id: 送料
         shipping_area_id: 発送地域
         estimated_shipping_date_id: 発送までの日数
+        image: 写真
       user:
         nickname: ニックネーム
         email: メールアドレス
