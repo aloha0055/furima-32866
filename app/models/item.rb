@@ -21,6 +21,7 @@ class Item < ApplicationRecord
     validates :condition_id
     validates :shipping_charge_id
     validates :shipping_area_id
+    validates :estimated_shipping_date_id
   end
 
   validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }, numericality: true, presence: true
