@@ -11,8 +11,7 @@ class ApplicationController < ActionController::Base
   # end
 
   # 以上、BASIC認証コード。
-  
-  before_action :authenticate_user!,except: [:show, :index]
+
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   private
