@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :text
   end
 
-  with_options presence: true, numericality: { other_than: 1} do
+  with_options presence: true, numericality: { other_than: 1 } do
     validates :category_id, inclusion: { in: 2..10 }
     validates :condition_id
     validates :shipping_charge_id
@@ -27,7 +27,6 @@ class Item < ApplicationRecord
   validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }, numericality: true, presence: true
 
   def was_attached?
-    self.image.attached?
+    image.attached?
   end
-
 end
