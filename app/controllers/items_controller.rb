@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Item.order('created_at DESC').includes(:user)
-    # binding.pry
   end
 
   def show
