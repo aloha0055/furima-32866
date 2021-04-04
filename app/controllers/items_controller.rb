@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :create, :update]
+  before_action :set_item, only: [:show, :edit, :update]
   before_action :authenticate_user!, except: [:show, :index]
   before_action :contributor_confirmation, only: [:edit, :update]
 
@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
   end
 
   def create
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
