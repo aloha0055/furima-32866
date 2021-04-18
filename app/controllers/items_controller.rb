@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @item_order = ItemOrder.new
+    @item = Item.new
   end
 
   def create
