@@ -15,7 +15,7 @@ class User < ApplicationRecord
     validates :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/ }
     validates :birthday
   end
-  validates :email, uniqueness: true
+  validates :email, uniqueness: {case_sensitive: true}
 
   has_many :items
   # has_many :comments
