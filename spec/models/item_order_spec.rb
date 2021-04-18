@@ -5,18 +5,17 @@ RSpec.describe ItemOrder, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @item_order = FactoryBot.build(:item_order, user_id: user.id, item_id: item.id )
-    sleep 1
+    sleep 0.3
   end
 
   describe '商品購入' do
     context '商品を購入できるとき' do
       it 'カラムすべてが存在すれば登録できる' do
-        binding.pry
         expect(@item_order).to be_valid
       end
       it '建物名がなくても登録できる' do
-        expect(@item_order).to be_valid
         @item_order.building_name = nil
+        expect(@item_order).to be_valid
       end
     end
 
@@ -42,13 +41,12 @@ RSpec.describe ItemOrder, type: :model do
         expect(@item_order.errors.full_messages).to include 'Post codeis invalid. Include hyphen(-)'
       end
       it '県が空では登録できない' do
-        @item_order.prefecture_id = '0'
+        @item_order.prefecture_id = 0
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include "Prefecturecan't be blank"
       end
       it '市町村が空では登録できない' do
         @item_order.city = nil
-        binding.pry
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include 'Cityを入力してください'
       end
@@ -66,6 +64,12 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.phone_number = '123456789012'
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include 'Phone numberは11文字以内で入力してください'
+      end
+      it '電話番号が数値のみでないと登録できない' do
+        @item_order.phone_number = '1234567890aa'
+        # binding.pry
+        @item_order.valid?
+        expect(@item_order.errors.full_messages).to include 'Phone number数字で入力してください'
       end
       it 'tokenが空では登録できない' do
         @item_order.token = nil
