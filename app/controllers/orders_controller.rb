@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :set_item
   before_action :authenticate_user!
   before_action :contributor_confirmation
+  before_action :purchased
 
   def index
     @item_order = ItemOrder.new
@@ -41,6 +42,12 @@ private
   def contributor_confirmation
     if current_user.id == @item.user.id
       redirect_to root_path  
+    end
+  end
+
+  def purchased
+    if @item.order
+      redirect_to root_path
     end
   end
 end
