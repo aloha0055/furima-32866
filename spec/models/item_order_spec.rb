@@ -67,7 +67,6 @@ RSpec.describe ItemOrder, type: :model do
       end
       it '電話番号が数値のみでないと登録できない' do
         @item_order.phone_number = '1234567890aa'
-        # binding.pry
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include 'Phone number数字で入力してください'
       end
