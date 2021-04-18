@@ -46,6 +46,7 @@ RSpec.describe ItemOrder, type: :model do
       it '番地が空では登録できない' do
         @item_order.house_number = nil
         @item_order.valid?
+        binding.pry
         expect(@item_order.errors.full_messages).to include 'House numberを入力してください'
       end
       it '電話番号が空では登録できない' do
@@ -53,9 +54,10 @@ RSpec.describe ItemOrder, type: :model do
         @item_order.valid?
         expect(@item_order.errors.full_messages).to include 'Phone numberを入力してください'
       end
-      it '電話番号が空では登録できない' do
-        @item_order.phone_number = '1234567890'
+      it '電話番号が11桁以下では登録できない' do
+        @item_order.phone_number = '123456789'
         @item_order.valid?
+        binding.pry
         expect(@item_order.errors.full_messages).to include 'Phone numberは11文字以上で入力してください'
       end
       it 'tokenが空では登録できない' do
