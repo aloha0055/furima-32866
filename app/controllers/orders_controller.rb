@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_item
-  before_action :authenticate_user!,only: [:create]
+  before_action :authenticate_user!
   before_action :contributor_confirmation
   before_action :purchased
 
